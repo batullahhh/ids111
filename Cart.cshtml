@@ -1,0 +1,38 @@
+﻿@page
+@model SOFT40081_StarterCode.Pages_Products.CartModel
+
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h1>Your Cart</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CartItems)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@item.Quantity</td>
+                <td>@item.TotalPrice.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <strong>Total: @Model.CartItems.Sum(i => i.TotalPrice).ToString("C")</strong>
+</div>
+
+<div>
+    <a asp-page="./Checkout" class="btn btn-primary">Proceed to Checkout</a>
+</div>
